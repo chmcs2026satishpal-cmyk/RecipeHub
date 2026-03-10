@@ -18,6 +18,7 @@ const Recipes = () => {
     const [meal, setMeal] = useState("");
     const [course, setCourse] = useState("");
     const [time, setTime] = useState("");
+    const [difficulty, setDifficulty] = useState("");
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -44,6 +45,7 @@ const Recipes = () => {
             if (type && recipe.type !== type) return false;
             if (meal && recipe.meal !== meal) return false;
             if (course && recipe.course !== course) return false;
+            if (difficulty && recipe.difficulty !== difficulty) return false;
 
             if (time === "lt15" && recipe.cookingTime >= 15) return false;
             if (time === "15to45" && (recipe.cookingTime < 15 || recipe.cookingTime > 45))
@@ -52,7 +54,7 @@ const Recipes = () => {
 
             return true;
         });
-    }, [recipes, search, type, meal, course, time]);
+    }, [recipes, search, type, meal, course, time, difficulty]);
 
     const clearFilters = () => {
         setSearch("");
@@ -60,6 +62,7 @@ const Recipes = () => {
         setMeal("");
         setCourse("");
         setTime("");
+        setDifficulty("");
     };
 
     const formatDateTime = (date) => {
@@ -190,6 +193,26 @@ const Recipes = () => {
 
                         <button onClick={() => setCourse("Snacks")}
                             className={course === "Snacks" ? activeFilterBtn : filterBtn}>Snacks</button>
+                    </div>
+                </div>
+
+                {/* DIFFICULTY */}
+
+                <div>
+                    <p className="text-xs font-semibold text-gray-500 mb-3">DIFFICULTY</p>
+
+                    <div className="flex flex-wrap gap-3">
+                        <button onClick={() => setDifficulty("")}
+                            className={difficulty === "" ? activeFilterBtn : filterBtn}>All</button>
+
+                        <button onClick={() => setDifficulty("Easy")}
+                            className={difficulty === "Easy" ? activeFilterBtn : filterBtn}>Easy</button>
+
+                        <button onClick={() => setDifficulty("Medium")}
+                            className={difficulty === "Medium" ? activeFilterBtn : filterBtn}>Medium</button>
+
+                        <button onClick={() => setDifficulty("Hard")}
+                            className={difficulty === "Hard" ? activeFilterBtn : filterBtn}>Hard</button>
                     </div>
                 </div>
 

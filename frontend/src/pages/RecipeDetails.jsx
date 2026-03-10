@@ -61,10 +61,16 @@ const RecipeDetails = () => {
                     .split(",")
                     .map(s => s.trim()),
 
-                cookingTime: Number(formData.cookingTime)
+                cookingTime: Number(formData.cookingTime),
+
+                type: formData.type,
+
+                course: formData.course,
+
+                difficulty: formData.difficulty
             };
 
-            const res = await axios.patch(`/recipes/${id}`, payload);
+            const res = await axios.put(`/recipes/${id}`, payload);
 
             const updated = res.data?.data || res.data;
 
@@ -177,16 +183,74 @@ const RecipeDetails = () => {
 
                     <div className="flex items-center gap-1">
                         <Clock size={16} />
-                        {recipe?.cookingTime} min
+                        {editMode ? (
+                            <input
+                                type="number"
+                                name="cookingTime"
+                                value={formData.cookingTime}
+                                onChange={handleChange}
+                                placeholder="30"
+                                className="border rounded px-2 py-1 w-20"
+                            />
+                        ) : (
+                            <>{recipe?.cookingTime} min</>
+                        )}
                     </div>
 
-                    <div className="px-2 py-1 bg-green-100 text-green-600 rounded-full">
-                        {recipe?.type}
-                    </div>
+                    {editMode ? (
+                        <select
+                            name="type"
+                            value={formData.type}
+                            onChange={handleChange}
+                            className="border rounded px-2 py-1"
+                        >
+                            <option value="Veg">Veg</option>
+                            <option value="Non-Veg">Non-Veg</option>
+                        </select>
+                    ) : (
+                        <div className="px-2 py-1 bg-green-100 text-green-600 rounded-full">
+                            {recipe?.type}
+                        </div>
+                    )}
 
-                    <div className="px-2 py-1 bg-gray-100 rounded-full">
-                        {recipe?.course}
-                    </div>
+                    {editMode ? (
+                        <select
+                            name="course"
+                            value={formData.course}
+                            onChange={handleChange}
+                            className="border rounded px-2 py-1"
+                        >
+                            <option value="Main Course">Main Course</option>
+                            <option value="Side">Side</option>
+                            <option value="Desserts">Desserts</option>
+                            <option value="Soup">Soup</option>
+                            <option value="Salad">Salad</option>
+                            <option value="Beverages">Beverages</option>
+                            <option value="Snacks">Snacks</option>
+                        </select>
+                    ) : (
+                        <div className="px-2 py-1 bg-gray-100 rounded-full">
+                            {recipe?.course}
+                        </div>
+                    )}
+
+                    {editMode ? (
+                        <select
+                            name="difficulty"
+                            value={formData.difficulty || ""}
+                            onChange={handleChange}
+                            className="border rounded px-2 py-1"
+                        >
+                            <option value="">Select difficulty</option>
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    ) : recipe?.difficulty ? (
+                        <div className={`px-2 py-1 rounded-full text-white ${recipe?.difficulty === 'Easy' ? 'bg-green-500' : recipe?.difficulty === 'Medium' ? 'bg-yellow-500' : 'bg-red-500'}`}>
+                            {recipe?.difficulty}
+                        </div>
+                    ) : null}
 
                 </div>
 

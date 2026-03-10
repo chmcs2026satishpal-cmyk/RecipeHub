@@ -120,6 +120,26 @@ const CreateRecipe = () => {
                     />
                 </div>
 
+                {/* DIFFICULTY LEVEL */}
+
+                <div>
+                    <label className="font-medium">Difficulty Level *</label>
+
+                    <select
+                        {...register("difficulty", { required: "Difficulty level is required" })}
+                        className="w-full border rounded-lg px-3 py-2 mt-1"
+                    >
+                        <option value="">Select difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+
+                    {errors.difficulty && (
+                        <p className="text-red-500 text-sm">{errors.difficulty.message}</p>
+                    )}
+                </div>
+
                 {/* MEAL */}
 
                 <div>

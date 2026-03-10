@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const recipeSchema = new mongoose.Schema(
   {
@@ -58,6 +58,12 @@ const recipeSchema = new mongoose.Schema(
       required: true,
     },
 
+    difficulty: {
+      type: String,
+      enum: ["Easy", "Medium", "Hard"],
+      required: true,
+    },
+
     image: {
       type: String,
       default: "",
@@ -70,4 +76,4 @@ const recipeSchema = new mongoose.Schema(
 
 const Recipe = mongoose.model("Recipe", recipeSchema);
 
-module.exports = Recipe;
+export default Recipe;
