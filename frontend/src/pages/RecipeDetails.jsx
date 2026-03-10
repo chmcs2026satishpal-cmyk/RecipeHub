@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import axios from "../api/AxiosConfig";
+import axios from "../lib/AxiosConfig";
 import toast from "react-hot-toast";
 import { ArrowLeft, Clock, Pencil, Trash2 } from "lucide-react";
 

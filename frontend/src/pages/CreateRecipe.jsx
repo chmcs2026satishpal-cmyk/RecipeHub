@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "../api/AxiosConfig";
+import axios from "../lib/AxiosConfig";
 import toast from "react-hot-toast";
 import { ArrowLeft, PlusCircle } from "lucide-react";
 

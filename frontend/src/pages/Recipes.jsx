@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import axios from "../api/AxiosConfig";
+import axios from "../lib/AxiosConfig";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 

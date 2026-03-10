@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "../api/AxiosConfig";
+import axios from "../lib/AxiosConfig";
 import { Loader2, ArrowRight } from "lucide-react";
 
 const Home = () => {
