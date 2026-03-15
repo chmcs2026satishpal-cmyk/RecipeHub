@@ -183,4 +183,3 @@ ISC
 
 ---
 
-**Happy Cooking! 🍳**
